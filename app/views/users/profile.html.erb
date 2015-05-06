@@ -1,0 +1,173 @@
+<div class="row clearfix">
+	<div class="col-md-12 column">				
+		<nav class="navbar navbar-default header navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				 <a class="navbar-brand" href="#"><span class="fontChange">Goodwill</span></a>
+			</div>				
+			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-left">
+	          <li>
+	          	<br>
+	           <%= form_tag("/search", method: "post", class: 'form-inline') do %>				  <div class="form-group">
+				  <%= text_field_tag('first_name', nil, placeholder: 'first name', class: 'form-control' ) %>
+				  </div>
+				  <div class="form-group">
+				  <%= text_field_tag('last_name', nil, placeholder: 'last name', class: 'form-control') %>
+				  </div>
+				  <div class="form-group">
+				  <%= submit_tag("Search", class: 'btn btn-default') %>
+				</div>
+				<% end %>
+	            
+	          </li>           
+	        </ul>
+			<ul class="nav nav-pills navbar-left" style="padding:10px;">					
+					<li class="active" style="margin-left:100px;">
+						<a href="/home">Home</a>
+					</li>
+					<li class="active" style="margin-left:20px;">
+						<a href="/profile/<%= current_user.id %>">Profile</a>
+					</li>		
+				
+					<li class="active" style="margin-left:20px;">
+						<a href="/about">About</a>
+					</li>					
+				</ul>
+			<ul class="nav navbar-nav navbar-right">
+					<li><br>
+						<%= "Welcome " + current_user.first_name + " " +current_user.last_name %></li>
+			  <li>
+			  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+			  </li>
+			</ul>				
+			</div>				
+		</nav>
+	</div>
+</div>
+<div class="space"></div>
+<div class="row clearfix">
+	<div class="col-md-4 column">	
+		<%= image_tag "profile.png", width:"290px", height:"300px", style: "padding:45px;" %>
+		<% if @relation.blank? %>
+			<%= form_for(Friendship.new, class: 'form-inline', remote: true) do |f| %>				 
+			  <%= f.hidden_field :user_id, :value => current_user.id %>
+			  <%= f.hidden_field :contact_id, :value => @user.id %>
+			  <div class="form-group">
+			  <%= f.select(:category, @user_groups.collect {|g| [ g.name, g.id ] }, class: 'form-control') %>
+				</div>
+			  <div class="form-group">
+			    <%= f.submit "Add contact", class: 'btn btn-default' %>
+			  </div>			  
+			<% end %>
+		<% end %>
+
+	</div>
+	<div class="col-md-8 column"  id="profile-top">	
+		<h2 id="profile-title" class="page-header"><%= "#{@user.first_name} #{@user.last_name}"  %></h2>
+
+	</div>
+</div>
+<div class="row clearfix">
+	<div class="col-md-4 column">		
+		<div class="peoplelist">
+			<h2>Contacts</h2>
+			<% if current_user.id == @user.id %>	
+				<%= form_for(Group.new, remote: true) do |f| %>
+				 
+				  <%= f.hidden_field :user_id, :value => current_user.id %>
+				  <div class="field">	   
+				    <%= f.text_field :name, style: "width:140px;" %> <%= f.submit "New Group" %>
+				  </div>			  
+				<% end %>
+			<% end %>
+
+			
+			<% @groups.each do |group| %>
+			<p class="page-header"><%= group[:group].name  %> <%= link_to 'Destroy', "/groups/#{group[:group].id}", method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'delete-group pull-right' %></p>
+
+				<% group[:contacts].each do |contact| %>
+					<div class="media">
+						<a href="#" class="pull-left"><%= image_tag "profile.png", width:"100px", height:"100px", class:"media-object" %></a>
+						<div class="media-body">
+							<h4 class="media-heading">
+								<small> <a href="/profile/<%= contact.id %>"><b><%= "#{contact.first_name} #{contact.last_name}"  %></b></a></small>
+							</h4>
+						</div>
+					</div>	
+				<% end %>	
+			<% end %>	
+		</div>
+	</div>
+
+	<div class="col-md-8 column postlist">
+		<div class="row clearfix">
+	<div class="col-md-12 column">		
+		<div id="form-main">
+		  <div class="form-div">
+
+			    <%= form_for(Application.new, remote: true) do |f| %>
+			    	<div class="row clearfix">
+						<div class="col-md-12 column">										     
+						      <p class="text title">
+						      	<%= f.hidden_field :applicant_id, :value => current_user.id %>     	
+						      	<%= f.select(:volunteers_number, @groups.collect {|g| [ g[:group].name, g[:group].id ] }, {include_blank: 'public'}) %>
+
+						      	<%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'others'}) %>
+						      	<br><br>
+						      	<%= f.text_area :description, :placeholder => 'Ask people for help', :class => 'feedback-input expand', :cols => 10, :rows => 1 %>			        
+						      </p>					   
+						      <div class="submit">
+						        <input type="submit" class="submit_post" value="POST" id="button-blue"/>
+						        <div class="ease"></div>
+						      </div>
+						</div>
+					</div>			     
+			      
+			    <% end %>
+	  		</div>
+		</div>
+	</div>
+</div>
+		
+		<% @posts.each do |post| %>
+		<div class="media post form-div">
+			<a href="#" class="pull-left"><%= image_tag "profile.png", width:"100px", height:"100px", class:"media-object" %></a>
+			<div class="media-body">
+				<h4 class="media-heading">
+					<b class="gray"><%= @user.first_name  %></b><small> needs some help with </small> <b class="gray"><%= post[:category].name %></b>
+
+					<small>
+						<%= link_to 'Destroy', "/applications/#{post[:post].id}",method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'red delete-application pull-right' %>
+					</small>
+
+				</h4> <p class="gray"><cite><%= post[:post].description  %></cite></p>
+				<em class="gray"><%= post[:post].updated_at %></em>
+
+			</div>
+		</div>
+		
+		<% end %>
+	</div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+	/*var postCount = $(".post").length;*/
+
+	$('textarea.expand').focus(function () {
+	    $(this).animate({ height: "10em" }, 500);
+	});
+
+	/*setInterval(function(){
+		$.ajax({
+		type: "GET",
+		url: "/posts/checkForNewsPosts"
+		}).done(function(response) {
+			if(parseInt(response) > postsCount){
+				alert("Refresh, there are new posts!");
+			}
+		});
+	}, 10000);*/
+</script>
+</div>

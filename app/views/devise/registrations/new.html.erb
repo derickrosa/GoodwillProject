@@ -1,0 +1,67 @@
+<div class="container">
+<div class="row clearfix">
+  <div class="col-md-4 column">
+  </div>
+  <div class="col-md-4 column">
+    <h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+   <%= f.label(:first_name, "First Name")%>
+   <%= f.text_field(:first_name, class: 'form-control') %>
+  </div>
+
+  <div class="field">
+    <%= f.label(:last_name, "Last Name")%>
+    <%= f.text_field(:last_name, class: 'form-control') %>
+  </div>          
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+     <%= f.label(:birthdate, "Birthdate")%><br>
+     <%= f.date_field(:birthdate, class: 'form-control') %>
+  </div>
+  <%= f.label(:gender, "Gender")%>
+  <div class="form-group" data-toggle="buttons">
+      <label class="btn btn-default">
+          <%= f.radio_button(:gender, "male") %>
+      male </label>
+      <label class="btn btn-default">
+          <%= f.radio_button(:gender, "female") %>
+      female </label>
+  </div>
+  
+   <%= f.hidden_field :points, :value => '100' %>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up", class: 'btn btn-info' %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+
+  </div>
+
+</div>
+
+</div>

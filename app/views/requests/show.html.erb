@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @request.applicant_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @request.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @request.description %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @request.category_id %>
+</p>
+
+<p>
+  <strong>Request date:</strong>
+  <%= @request.request_date %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @request.status %>
+</p>
+
+<p>
+  <strong>Volunteers number:</strong>
+  <%= @request.volunteers_number %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>

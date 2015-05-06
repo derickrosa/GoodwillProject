@@ -1,0 +1,69 @@
+<div class="row clearfix">
+	<div class="col-md-12 column">				
+		<nav class="navbar navbar-default header navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				 <a class="navbar-brand" href="#"><span class="fontChange">Goodwill</span></a>
+			</div>				
+			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-left">
+	          <li>
+	          	<br>
+	           <%= form_tag("/search", method: "post", class: 'form-inline') do %>				  <div class="form-group">
+				  <%= text_field_tag('first_name', nil, placeholder: 'first name', class: 'form-control' ) %>
+				  </div>
+				  <div class="form-group">
+				  <%= text_field_tag('last_name', nil, placeholder: 'last name', class: 'form-control') %>
+				  </div>
+				  <div class="form-group">
+				  <%= submit_tag("Search", class: 'btn btn-default') %>
+				</div>
+				<% end %>
+	            
+	          </li>           
+	        </ul>
+			<ul class="nav nav-pills navbar-left" style="padding:10px;">					
+					<li class="active" style="margin-left:100px;">
+						<a href="/home">Home</a>
+					</li>
+					<li class="active" style="margin-left:20px;">
+						<a href="/profile/<%= current_user.id %>">Profile</a>
+					</li>		
+				
+					<li class="active" style="margin-left:20px;">
+						<a href="/about">About</a>
+					</li>					
+				</ul>
+			<ul class="nav navbar-nav navbar-right">
+					<li><br>
+						<%= "Welcome " + current_user.first_name + " " +current_user.last_name %></li>
+			  <li>
+			  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+			  </li>
+			</ul>				
+			</div>				
+		</nav>
+	</div>
+</div>
+<div class="space"></div>
+<div class="row clearfix">
+		<div class="col-md-12 column">
+
+			<div class="page-header" id="about">
+				<h2>
+					About <small>Us</small>
+				</h2>
+			</div>
+				<p class="aboutText">
+					<img src="http://calvinayre.com/wp-content/uploads/2014/04/confessions-of-a-poker-writer-the-art-of-book-reviewing.jpg" class="img-rounded; about" align="left" style="padding: 10px;">
+					 <b class="fontChange">Goodwill</b> is a FAKE social network about helping people and a make a better world for us all, based on nothing. Founded in Fredonia in 2014, we are committed to championing work we believe in, while our philosophy is to provide a personalised service to all our clients. Our roster has been carefully curated to include a broad spectrum of talent in photography, moving image, set design and styling. From the beginning we have focused on artists who truly embody their creative output, both commercially, and in their personal projects, while working at the highest level. We take pride in our honest, straight forward and professional approach, which extends to our capacity to manage every aspect of shoot production in-house.
+					 From the beginning we have focused on artists who truly embody their creative output, both commercially, and in their personal projects, while working at the highest level. We take pride in our honest, straight forward and professional approach, which extends to our capacity to manage every aspect of shoot production in-house.
+				</p>
+
+
+		</div>
+	</div>
+		
+
+
+		
+	<hr>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  resquest_id: 1
+  applicant_id: 1
+  volunteer_id: 1
+  status: false
+
+two:
+  resquest_id: 1
+  applicant_id: 1
+  volunteer_id: 1
+  status: false

@@ -1,0 +1,101 @@
+<div class="row clearfix">
+	<div class="col-md-12 column">				
+		<nav class="navbar navbar-default header navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				 <a class="navbar-brand" href="#"><span class="fontChange">Goodwill</span></a>
+			</div>				
+			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-left">
+	          <li>
+	          	<br>
+	           <%= form_tag("/search", method: "post", class: 'form-inline') do %>				  <div class="form-group">
+				  <%= text_field_tag('first_name', nil, placeholder: 'first name', class: 'form-control' ) %>
+				  </div>
+				  <div class="form-group">
+				  <%= text_field_tag('last_name', nil, placeholder: 'last name', class: 'form-control') %>
+				  </div>
+				  <div class="form-group">
+				  <%= submit_tag("Search", class: 'btn btn-default') %>
+				</div>
+				<% end %>
+	            
+	          </li>           
+	        </ul>
+			<ul class="nav nav-pills navbar-left" style="padding:10px;">					
+					<li class="active" style="margin-left:100px;">
+						<a href="/home">Home</a>
+					</li>
+					<li class="active" style="margin-left:20px;">
+						<a href="/profile/<%= current_user.id %>">Profile</a>
+					</li>		
+				
+					<li class="active" style="margin-left:20px;">
+						<a href="/about">About</a>
+					</li>					
+				</ul>
+			<ul class="nav navbar-nav navbar-right">
+					<li><br>
+						<%= "Welcome " + current_user.first_name + " " +current_user.last_name %></li>
+			  <li>
+			  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+			  </li>
+			</ul>				
+			</div>				
+		</nav>
+	</div>
+</div>
+<div class="space"></div>
+<div class="row clearfix">
+	
+	
+</div>
+<div class="row clearfix">
+	<div class="col-md-4 column">		
+		<div class="col-md-12 column">	
+			<%= image_tag "profile.png", width:"290px", height:"300px", style: "padding:45px;" %>
+		</div>
+	</div>
+
+	<div class="col-md-8 column postlist">
+		<div class="col-md-12 column"  id="profile-top">	
+		<h2 id="profile-title" class="page-header"><%= "#{current_user.first_name} #{current_user.last_name}"  %></h2>
+
+	</div>
+	
+		
+		<% @relevant_results.each do |user| %>
+		<div class="media post form-div">
+			<a href="#" class="pull-left"><%= image_tag "profile.png", width:"100px", height:"100px", class:"media-object" %></a>
+			<div class="media-body">
+				<h4 class="media-heading">
+					<a href="/profile/<%= user.id %>"><b class="gray"><%= user.first_name  %></b><small> </small> <b class="gray"><%= user.last_name %></b></a><br>
+					<p class="gray"><%= user.gender %></p>
+
+			</div>
+		</div>
+		
+		<% end %>
+	</div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+	/*var postCount = $(".post").length;*/
+
+	$('textarea.expand').focus(function () {
+	    $(this).animate({ height: "10em" }, 500);
+	});
+
+	/*setInterval(function(){
+		$.ajax({
+		type: "GET",
+		url: "/posts/checkForNewsPosts"
+		}).done(function(response) {
+			if(parseInt(response) > postsCount){
+				alert("Refresh, there are new posts!");
+			}
+		});
+	}, 10000);*/
+</script>
+</div>

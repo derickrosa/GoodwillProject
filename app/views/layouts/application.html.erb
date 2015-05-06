@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Goodwill</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+<%= yield %>
+</div>
+<hr>
+<footer style="margin:0;">
+		
+	<div class="row clearfix">
+		<div class="col-md-12 column text-center white">
+			 <address style="padding:20px;"> <strong>Goodwill, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
+		</div>
+	</div>
+				
+					
+</footer>
+
+</body>
+</html>

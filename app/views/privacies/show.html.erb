@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @privacy.request_id %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @privacy.group_id %>
+</p>
+
+<%= link_to 'Edit', edit_privacy_path(@privacy) %> |
+<%= link_to 'Back', privacies_path %>

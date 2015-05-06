@@ -1,0 +1,235 @@
+<div class="row clearfix">
+  <div class="col-md-12 column">
+    <div class="modal fade" id="modal-container-275991" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="black" id="myModalLabel">
+              Sign up
+            </h4>
+          </div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="modal-body">  
+    <div class="row clearfix">
+    <div class="col-md-6 column">
+      <div class="form-group">
+       <%= f.label(:first_name, "First Name")%><%= f.text_field(:first_name, class: 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= f.label(:last_name, "Last Name")%><%= f.text_field(:last_name, class: 'form-control') %>
+      </div>                                    
+      <div class="form-group">
+         <%= f.label(:email, "Email address")%><%= f.email_field(:email, class: 'form-control') %>
+      </div>    
+      <div class="form-group">
+         <%= f.label(:birthdate, "Birthdate")%><br><%= f.date_field(:birthdate, class: 'form-control') %>
+      </div>
+      <%= hidden_field_tag(:points, "100") %>           
+    </div>
+    <div class="col-md-6 column">
+      <%= f.label(:gender, "Gender")%>
+      <div class="form-group" data-toggle="buttons">
+          <label class="btn btn-default">
+              <%= radio_button_tag(:gender, "male") %>
+          male </label>
+          <label class="btn btn-default">
+              <%= radio_button_tag(:gender, "female") %>
+          female </label>
+      </div>
+
+      <div class="form-group">
+         <%= f.label(:encrypted_password, "Password")%><%= f.password_field(:encrypted_password, class: 'form-control') %>
+      </div>
+      <div class="form-group">
+         <%= f.label(:repeat_password, "Repeat Password")%><%= f.password_field(:repeat_password, class: 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= f.label(:avatar, "Choose a photo")%><%= f.file_field :avatar %>       
+      </div>
+      <div class="checkbox">
+         <label><%= check_box_tag(:remember) %>Remember me</label>
+      </div>
+    </div>    
+    </div>                                
+  </div>                    
+  <div class="modal-footer">
+    <button class="btn btn-default" data-dismiss="modal">Close</button>  <%= f.submit "Sign up", class:'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>          
+      </div>        
+    </div>      
+    <nav class="navbar navbar-default header navbar-fixed-top" role="navigation">
+      <div class="navbar-header brand">
+         <a class="navbar-brand" href="#"><span class="fontChange">Goodwill</span></a>
+      </div>        
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
+        
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <form class="navbar-form navbar-left">
+              <!-- <span class="label label-default">Sign in</span> -->
+
+              <div class="form-group">
+                <label>Email: </label>  
+                <br>            
+                <input type="email" class="form-control textfield" placeholder="example@example.com" />
+                <br>
+                <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Keep me logged in
+                    </label>
+                 </div>
+              </div>            
+              <div class="form-group">  
+                <label>Password: </label> 
+                <br>            
+                <input type="password" class="form-control textfield" placeholder="only letters and numbers" />
+                <br>
+                <a href="forgot.html"><label>Forgot your password?</label></a>
+              </div>
+              <button type="submit" class="btn btn-info">Log in</button>
+            </form>
+          </li>
+          <li>              
+            <br>
+            <a id="modal-275991" href="#modal-container-275991" role="button" class="btn" data-toggle="modal">Sign up</a>                   
+          </li>           
+        </ul>
+      </div>        
+    </nav>
+  </div>
+</div>
+<div class="space"></div>
+<div class="container"> 
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <h1 class="text-center fontChange" style="color:white">
+            Welcome to Goodwill.
+          </h1>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-md-6 column">
+          <div class="page-header">
+            <h1>
+              Let's help each other! <br> <small>And make a better world</small>
+            </h1>
+          </div>
+          <div class="media">
+             <a href="#" class="pull-left"><img src="<%= asset_path( 'icon1.png' ) %>" class="media-object" alt='' /></a>
+            <div class="media-body">
+              <h4 class="media-heading">
+                Need a hand? Ask people favors
+              </h4>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.  
+            </div>
+          </div>
+          <div class="media">
+             <a href="#" class="pull-left"><img src="<%= asset_path( 'icon2.png' ) %>" class="media-object" alt='' /></a>
+            <div class="media-body">
+              <h4 class="media-heading">
+                Help people and be helped!
+              </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+              <div class="media">
+              </div>
+            </div>
+          </div>
+          <div class="media">
+             <a href="#" class="pull-left"><img src="<%= asset_path( 'icon3.png' ) %>" class="media-object" alt='' /></a>
+            <div class="media-body">
+              <h4 class="media-heading">
+                Make friends!
+              </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 column">
+          <div class="carousel slide page-header" id="carousel-270721">
+            <ol class="carousel-indicators">
+              <li class="active" data-slide-to="0" data-target="#carousel-270721">
+              </li>
+              <li data-slide-to="1" data-target="#carousel-270721">
+              </li>
+              <li data-slide-to="2" data-target="#carousel-270721">
+              </li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <img style="height:432px; width: 570px;" alt="" src="<%= asset_path( 'slide1.jpg' ) %>" />
+                <div class="carousel-caption">
+                  <h4>
+                    Meet new people
+                  </h4>
+                  <p>
+                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                  </p>
+                </div>
+              </div>
+              <div class="item">
+                <img style="height:432px; width: 570px;" alt="" src="<%= asset_path( 'slide2.jpg' ) %>" />
+                <div class="carousel-caption">
+                  <h4>
+                    Second Thumbnail label
+                  </h4>
+                  <p>
+                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                  </p>
+                </div>
+              </div>
+              <div class="item">
+                <img style="height:432px; width: 570px;" alt="" src="<%= asset_path( 'slide3.jpg' ) %>" />
+                <div class="carousel-caption">
+                  <h4>
+                    Third Thumbnail label
+                  </h4>
+                  <p>
+                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                  </p>
+                </div>
+              </div>
+            </div> <a class="left carousel-control" href="#carousel-270721" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-270721" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <nav class="navbar navbar-default" role="navigation">       
+        
+          <div style="float:none; margin-left: 25%;">
+            <form class="navbar-form">
+              <div class="form-group">
+                <div class="">
+                 <a class="navbar-brand" href="#">Find a friend</a>
+              </div>
+              </div>            
+            <div class="form-group">              
+              <input type="text" class="form-control" placeholder="First Name"/>
+            </div>            
+            <div class="form-group">              
+              <input type="text" class="form-control" placeholder="Last Name" />
+            </div>
+            <button type="submit" class="btn">Search</button>
+          </form>
+          </div>
+      
+        
+      </nav>
+    </div>
+  </div>
+  
+    <hr>  
+  
+  <div class="row clearfix">
+    <div class="col-md-12 column text-center">
+       <address> <strong>Goodwill, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
+    </div>
+  </div>
+</div>
