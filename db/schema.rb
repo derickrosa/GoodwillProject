@@ -46,15 +46,6 @@ ActiveRecord::Schema.define(version: 20141210231530) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: true do |t|
-    t.integer  "applicant_id"
-    t.string   "title"
-    t.string   "description"
-    t.integer  "category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "privacies", force: true do |t|
     t.integer  "request_id"
     t.integer  "group_id"
@@ -67,18 +58,6 @@ ActiveRecord::Schema.define(version: 20141210231530) do
     t.integer  "applicant_id"
     t.integer  "volunteer_id"
     t.boolean  "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "requests", force: true do |t|
-    t.string   "applicant_id"
-    t.string   "title"
-    t.string   "description"
-    t.integer  "category_id"
-    t.date     "request_date"
-    t.boolean  "status"
-    t.integer  "volunteers_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
