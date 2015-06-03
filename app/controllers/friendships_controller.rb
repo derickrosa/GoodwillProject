@@ -21,7 +21,7 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship = Friendship.new(friendship_params)    
+    @friendship = Friendship.new(friendship_params)
     respond_to do |format|
       if @friendship.save
         format.json { render json: @friendship, status: :ok }

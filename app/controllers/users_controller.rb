@@ -11,14 +11,18 @@ class UsersController < ApplicationController
 	def profile				
 		@user = User.where(id:params[:user_id]).first	
 		
-		@relation = Friendship.where(user_id:current_user.id, contact_id:@user.id)
-		
-		raw_groups = Group.where(user_id:@user.id)
+				
+		raw_groups = Group.where(user_id:current_user.id)
+
+		if raw_groups.blank?
+			Group.create(name: 'Acquaintances', user_id: current_user.id)
+		end
 		@groups = []
 
 		raw_groups.each do |group|
 			contacts=[]
 			@relations = Friendship.where(user_id:@user.id, category:group.id)
+			@relations += Friendship.where(contact_id:@user.id, category:group.id)
 			@relations.each do |relation|
 				contacts << User.where(id:relation.contact_id).first
 			end
@@ -28,8 +32,11 @@ class UsersController < ApplicationController
 		@user_groups=[]
 		@user_groups = Group.where(user_id:current_user.id)
 
-		raw_posts = Application.where(applicant_id:@user.id).order("created_at DESC")
+		Group.where(user_id: @user.id)
+
+		raw_posts = Application.where(applicant_id:@user.id, group_id:).order("created_at DESC")
 		@posts = []
+
 		raw_posts.each do |post|
 			post_and_category = {post:post, category:Category.find(post.category_id)}
 			@posts << post_and_category

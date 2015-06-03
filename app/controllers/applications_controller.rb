@@ -50,9 +50,11 @@ class ApplicationsController < ApplicationController
 
   def create
     @application = Application.new(application_params)    
+
     respond_to do |format|
       if @application.save
         format.json { render json: @application, status: :ok }
+        Privacy.create(request_id: @application.id, group_id: @application.group_id)
       else
         format.json { render json: @application.errors, status: :unprocessable_entity }
       end
@@ -69,7 +71,7 @@ class ApplicationsController < ApplicationController
     respond_to do |format|
       format.json { head :no_content }
     end
-  end
+  end 
 
   private
     def set_application
@@ -77,6 +79,6 @@ class ApplicationsController < ApplicationController
     end
 
     def application_params
-      params.require(:application).permit(:applicant_id, :title, :description, :category_id, :request_date, :status, :volunteers_number)
+      params.require(:application).permit(:applicant_id, :title, :description, :category_id, :request_date, :status, :volunteers_number, :group_id)
     end
 end

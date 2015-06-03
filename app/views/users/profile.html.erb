@@ -48,7 +48,7 @@
 <div class="row clearfix">
 	<div class="col-md-4 column">	
 		<%= image_tag "profile.png", width:"290px", height:"300px", style: "padding:45px;" %>
-		<% if @relation.blank? %>
+		<% if @relation.blank? &&  current_user.id != @user.id %>
 			<%= form_for(Friendship.new, class: 'form-inline', remote: true) do |f| %>				 
 			  <%= f.hidden_field :user_id, :value => current_user.id %>
 			  <%= f.hidden_field :contact_id, :value => @user.id %>
@@ -110,9 +110,9 @@
 						<div class="col-md-12 column">										     
 						      <p class="text title">
 						      	<%= f.hidden_field :applicant_id, :value => current_user.id %>     	
-						      	<%= f.select(:volunteers_number, @groups.collect {|g| [ g[:group].name, g[:group].id ] }, {include_blank: 'public'}) %>
+						      	<%= f.select(:group_id, @groups.collect {|g| [ g[:group].name, g[:group].id ] }, {include_blank: 'Select Group'}) %>
 
-						      	<%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'others'}) %>
+						      	<%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'Select Category'}) %>
 						      	<br><br>
 						      	<%= f.text_area :description, :placeholder => 'Ask people for help', :class => 'feedback-input expand', :cols => 10, :rows => 1 %>			        
 						      </p>					   
